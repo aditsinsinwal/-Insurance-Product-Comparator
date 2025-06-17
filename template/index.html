@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Product Comparator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>🛡️ Insurance Product Comparator</h2>
+        <p>Upload <strong>two scanned PDF documents</strong> of insurance plans to compare their coverage, exclusions, and premiums using AI.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label>Select two scanned PDFs:</label><br>
+            <input type="file" name="pdfs" multiple required><br><br>
+            <input type="submit" value="Compare">
+        </form>
+
+        {% if warning %}
+            <div class="warning">
+                ⚠️ <strong>{{ warning }}</strong>
+            </div>
+        {% endif %}
+
+        {% if result %}
+            <h3>🧾 Comparison Result</h3>
+            <pre class="result">{{ result }}</pre>
+        {% endif %}
+    </div>
+</body>
+</html>
