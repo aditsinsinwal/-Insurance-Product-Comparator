@@ -1,0 +1,17 @@
+import openai
+
+def analyze_reviews(name, review_list):
+    joined_reviews = "\n\n".join(review_list)
+    prompt = f"""
+Analyze these customer reviews for {name} and summarize the overall sentiment.
+Mention any recurring positives or negatives in bullet points.
+
+Reviews:
+{joined_reviews}
+"""
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.5
+    )
+    return response.choices[0].message.content.strip()
