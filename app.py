@@ -48,3 +48,16 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+from review_scraper import scrape_trustpilot_reviews
+from review_analyzer import analyze_reviews
+
+insurer_a_name = request.form.get("insurerA")
+insurer_b_name = request.form.get("insurerB")
+
+reviews_a = scrape_trustpilot_reviews(insurer_a_name)
+reviews_b = scrape_trustpilot_reviews(insurer_b_name)
+
+sentiment_a = analyze_reviews(insurer_a_name, reviews_a)
+sentiment_b = analyze_reviews(insurer_b_name, reviews_b)
+
