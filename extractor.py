@@ -21,7 +21,7 @@ Plan A:
 
 Plan B:
 {doc_b}
-
+### We can add more plans as well, to be updated soon, working on it!
 Summarize the key differences in a clear, point-wise manner.
 """
     response = openai.ChatCompletion.create(
