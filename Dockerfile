@@ -25,7 +25,7 @@ RUN pip install -r requirements.txt
 # Expose the default Flask port
 EXPOSE 5000
 
-# Set the OpenAI API key from env var or bind-mount .env
+# Have to set the OpenAI API key from env var or bind-mount .env
 ENV FLASK_APP=app.py
 
 # Start the Flask app
