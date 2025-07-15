@@ -17,6 +17,7 @@ def check_keywords(text):
     return any(word in tokens for word in must_have)
 
 @app.route('/', methods=['GET', 'POST'])
+
 def index():
     comparison_result = ""
     warning_message = ""
