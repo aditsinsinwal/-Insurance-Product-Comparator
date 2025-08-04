@@ -1,6 +1,6 @@
 import openai
 
-# Sample fallback data for insurers – TO BE REPLACED WITH ACTUAL DATA THIS IS JUST AN EXAMPLE
+# Sample data - nor actual, needs to be UPDATED ;)
 def scrape_sample_reviews(insurer_name):
     sample_data = {
         "Sun Life": [
