@@ -14,7 +14,7 @@ Unlike apps that require machine-readable PDFs, this tool is OCR-first — it co
 
 Features
 -OCR support for scanned insurance PDFs (via pytesseract)
--Structured field extraction using OpenAI GPT-4
+-Structured field extraction using OpenAI GPT-4 ..... to be updated to 5 ;)
 -Side-by-side comparison of insurance plans
 -Keyword filtering to reject irrelevant documents
 -Simple web interface made using (Flask + HTML + CSS)
