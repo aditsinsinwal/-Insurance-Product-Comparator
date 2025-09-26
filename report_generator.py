@@ -1,48 +1,4 @@
-"""
-report_generator.py
-Create a clean, side-by-side comparison report (HTML by default; optional PDF).
-
-Expected high-level input (example):
-comparison = {
-    "left": {"name": "Plan A", "meta": {"insurer": "Alpha", "date": "2024-10-02"}},
-    "right": {"name": "Plan B", "meta": {"insurer": "Beta", "date": "2024-07-19"}},
-    "sections": [
-        {
-            "title": "Coverage",
-            "rows": [
-                {"field": "Life Cover", "left": "$250,000", "right": "$200,000"},
-                {"field": "Accidental Death", "left": "Included", "right": "Excluded"},
-            ],
-        },
-        {
-            "title": "Exclusions",
-            "rows": [
-                {"field": "Pre-existing (12m)", "left": "Yes", "right": "Yes"},
-                {"field": "Hazardous Sports", "left": "No", "right": "Yes"},
-            ],
-        },
-    ],
-    "summary": {
-        "highlights": [
-            "Plan A has higher base life cover.",
-            "Plan B excludes hazardous sports."
-        ],
-        "score_left": 78,   # optional numeric score (0–100)
-        "score_right": 65
-    }
-}
-
-Usage:
-    from report_generator import generate_report
-    paths = generate_report(comparison, output_dir="reports", base_filename="comparison_2025-09-25", as_pdf=False)
-
-Notes:
-- PDF generation tries WeasyPrint first, then pdfkit (wkhtmltopdf). If neither is available, you still get HTML.
-- Keep dependencies optional; don’t make CI choke if PDF tools aren’t installed.
-"""
-
 from __future__ import annotations
-
 import base64
 import datetime as dt
 import json
@@ -51,10 +7,6 @@ import shutil
 import textwrap
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
-
-# -----------------------------
-# Public API
-# -----------------------------
 
 def generate_report(
     comparison: Dict[str, Any],
@@ -100,10 +52,6 @@ def generate_report(
 
     return out
 
-
-# -----------------------------
-# HTML rendering
-# -----------------------------
 
 def _render_html(comparison: Dict[str, Any], generated_at: str, logo_b64: Optional[str]) -> str:
     left_name = comparison["left"].get("name", "Left")
@@ -346,9 +294,7 @@ def _maybe_embed_logo(path: Optional[str]) -> Optional[str]:
         return None
 
 
-# -----------------------------
 # PDF generation (optional)
-# -----------------------------
 
 def _html_to_pdf(html: str, out_path: str) -> Tuple[bool, str]:
     """
